@@ -30,6 +30,15 @@ public class Timesheet implements Serializable{
 	private boolean isValide;
 	
 
+	public Timesheet(TimesheetPK pk, boolean isvalide) {
+		this.timesheetPK=pk;
+		this.isValide=isvalide;
+	}
+
+	public Timesheet() {
+		
+	}
+
 	public boolean isValide() {
 		return isValide;
 	}
