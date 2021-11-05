@@ -69,11 +69,13 @@
 			</plugin>
 		</plugins>
 	</build>
-<repositories>
+	<distributionManagement>
+	
     <repository>
         <id>Timesheet-Jsleaders</id>
         <name>Timesheet-Jsleaders</name>
         <url>http://localhost:8081/repository/maven-releases/</url>
     </repository>
-</repositories>
+</distributionManagement>
+
 </project>
