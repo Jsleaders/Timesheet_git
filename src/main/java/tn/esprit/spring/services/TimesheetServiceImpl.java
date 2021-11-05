@@ -5,10 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Employe;
@@ -47,8 +45,8 @@ public class TimesheetServiceImpl implements ITimesheetService {
     
 	public void affecterMissionADepartement(int missionId, int depId) {
 		
-		Mission mission = missionRepository.findById(missionId).get();
-		Departement dep = deptRepoistory.findById(depId).get();
+		Mission mission = missionRepository.findById(missionId).orElse(new Mission());
+		Departement dep = deptRepoistory.findById(depId).orElse(new Departement());
 		mission.setDepartement(dep);
 		
 		missionRepository.save(mission);
@@ -77,8 +75,8 @@ public class TimesheetServiceImpl implements ITimesheetService {
 		TimesheetPK timesheetPK = new TimesheetPK(missionId, employeId, dateDebut, dateFin);
 		Timesheet timesheet =timesheetRepository.findBytimesheetPK(timesheetPK);
 		logger.info("trying to validating timesheet |  ID" +timesheetPK);
-		Employe validateur = employeRepository.findById(validateurId).get();
-		Mission mission = missionRepository.findById(missionId).get();
+		Employe validateur = employeRepository.findById(validateurId).orElse(new Employe());
+		Mission mission = missionRepository.findById(missionId).orElse(new Mission());
 		//verifier s'il est un chef de departement (interet des enum)
 		if(!validateur.getRole().equals(Role.CHEF_DEPARTEMENT)){
 			logger.warn("l'employe doit etre chef de departement pour valider une feuille de temps !");
@@ -109,7 +107,6 @@ public class TimesheetServiceImpl implements ITimesheetService {
 		
 	}
 	public List<Mission> findAllMissionByEmployeJPQL(int employeId) {		
-		/*List<Mission> AllMissionByEmploye =timesheetRepository.findAllMissionByEmployeJPQL(employeId);*/
 		logger.info("fetched all mission by the given employee ID | "+ employeId +"successfully" );
 		return timesheetRepository.findAllMissionByEmployeJPQL(employeId);
 	}
