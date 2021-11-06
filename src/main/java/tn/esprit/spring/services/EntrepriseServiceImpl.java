@@ -29,12 +29,12 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		try {
 			logger.debug(entreprise.getId());
 
-			logger.trace("debut d'ajout de l'entreprise: " + entreprise.getName());
+			logger.trace("Debut de l'ajout d'une entreprise: " + entreprise.getName());
 			entrepriseRepoistory.save(entreprise);
-			logger.trace("fin ajout");
+			logger.trace("Fin ajout");
 
 			logger.debug("l'entreprise: " + entreprise.getName() + " de l'id: " + entreprise.getId()
-					+ " ajoutée avec succé");
+					+ " est ajoutée avec succé");
 
 		} catch (Exception e) {
 			logger.error("Erreur" + e);
@@ -45,7 +45,22 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 
 	public int ajouterDepartement(Departement dep) {
-		deptRepoistory.save(dep);
+		logger.info("START ajouterEntreprise ");
+
+		try {
+			logger.debug(dep.getId());
+
+			logger.trace("debut de l'ajout d'un departement: " + dep.getName());
+			deptRepoistory.save(dep);
+			logger.trace("fin Ajout");
+
+			logger.debug("l'dep: " + dep.getName() + " de l'id: " + dep.getId() + " est ajoutée avec succé");
+
+		} catch (Exception e) {
+			logger.error("Erreur" + e);
+		}
+		logger.info("END ajouterdep ");
+
 		return dep.getId();
 	}
 	
