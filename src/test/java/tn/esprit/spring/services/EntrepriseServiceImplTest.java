@@ -80,7 +80,7 @@ public class EntrepriseServiceImplTest {
 		Assert.assertNull(e2);
 	}
 
-	/*@Test
+	@Test
 	public void testgetDepartementById() {
 		Departement dep = new Departement("Info");
 		int id = serviceEntreprise.ajouterDepartement(dep);
@@ -92,6 +92,6 @@ public class EntrepriseServiceImplTest {
 		Departement d2 = serviceEntreprise.getDepartementById(213232);
 		Assert.assertNull(d2);
 	}
-*/
+
 }
 
