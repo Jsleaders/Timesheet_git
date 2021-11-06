@@ -17,12 +17,13 @@ import tn.esprit.spring.repository.EntrepriseRepository;
 @Service
 public class EntrepriseServiceImpl implements IEntrepriseService {
 	public static final Logger logger = Logger.getLogger(EntrepriseServiceImpl.class);
-
+	
 	@Autowired
     EntrepriseRepository entrepriseRepoistory;
 	@Autowired
 	DepartementRepository deptRepoistory;
 	
+	String error = "Erreur: ";
 	public int ajouterEntreprise(Entreprise entreprise) {
 		logger.info("START ajouterEntreprise ");
 
@@ -37,7 +38,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 					+ " est ajoutée avec succé");
 
 		} catch (Exception e) {
-			logger.error("Erreur" + e);
+			logger.error(error + e);
 		}
 		logger.info("END ajouterEntreprise ");
 
@@ -57,7 +58,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 			logger.debug("l'dep: " + dep.getName() + " de l'id: " + dep.getId() + " est ajoutée avec succé");
 
 		} catch (Exception e) {
-			logger.error("Erreur" + e);
+			logger.error(error + e);
 		}
 		logger.info("END ajouterdep ");
 
@@ -105,7 +106,7 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 		}
 
 		} catch (Exception e) {
-			logger.error("Erreur" + e);
+			logger.error(error + e);
 		}
 
 		logger.info("END affecterDepartementAEntreprise ");
@@ -179,7 +180,7 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 			}
 
 		} catch (Exception err) {
-			logger.error("Erreur" + err);
+			logger.error(error + err);
 
 		}
 		if(e.isPresent()) {
@@ -215,7 +216,7 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 			}
 
 		} catch (Exception e) {
-			logger.error("Erreur"+ e);
+			logger.error(error+ e);
 
 		}
 		if(d.isPresent()) {
@@ -241,7 +242,7 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 			logger.trace("fin Get");
 			logger.trace("FIN Test : verifier l'existence du l'entrep");
 		} catch (Exception e) {
-			logger.error("Erreur: " + e);
+			logger.error(error + e);
 
 		}
 		logger.info("END getEntrepriseById ");
@@ -263,7 +264,7 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 			logger.trace("fin Get");
 			logger.trace("FIN Test : verifier l'existence du departement");
 		} catch (Exception e) {
-			logger.error("Erreur"+ e);
+			logger.error(error+ e);
 
 		}
 		logger.info("END getDepartementById ");
