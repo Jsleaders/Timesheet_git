@@ -112,13 +112,46 @@ public int affecterDepartementAEntreprise(int depId, int entrepriseId) {
 		return dep.getEntreprise().getId();	
 		}
 	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
+		logger.info("START getAllDepartementsNamesByEntreprise ");
 		List<String> depNames = new ArrayList<>();
-		for(Departement dep : entrepriseManagedEntity.getDepartements()){
-			depNames.add(dep.getName());
+		Optional<Entreprise> e = entrepriseRepoistory.findById(entrepriseId);
+	
+		for(String elem: depNames)
+	       {
+			logger.debug("Init List"+elem);
+	       }
+		
+		logger.trace("Début Test : verifier l'existence du l'entrepri");
+
+		if (e.isPresent()) {
+			logger.trace("Début Get : Entreprise");
+			Entreprise entrepriseManagedEntity = e.get();
+			logger.trace("FIN Get : Entreprise");
+
+			logger.trace("Début parcour : de liste des dep d'entrep");
+			for (Departement dep : entrepriseManagedEntity.getDepartements()) {
+				depNames.add(dep.getName());
+			}
+			logger.trace("FIN parcour de liste des dep d'entrep");
+
+			
+			for(String elem: depNames)
+		       {
+				logger.debug("Final List"+elem);
+		       }
+
+			return depNames;
 		}
 		
+		logger.trace("FIN Test : verifier l'existence du l'entrepri");
+
+		
+		
+		
+		logger.info("END getAllDepartementsNamesByEntreprise ");
+
 		return depNames;
+
 	}
 
 	@Transactional
