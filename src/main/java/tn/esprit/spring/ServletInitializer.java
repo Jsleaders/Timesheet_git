@@ -1,6 +1,5 @@
 package tn.esprit.spring;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
