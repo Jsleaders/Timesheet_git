@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 MYSQL_PASSWORD=zzz
 service mysql start
 mkdir -p D:/logs/
