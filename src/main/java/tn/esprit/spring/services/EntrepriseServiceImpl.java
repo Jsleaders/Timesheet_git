@@ -24,7 +24,23 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	DepartementRepository deptRepoistory;
 	
 	public int ajouterEntreprise(Entreprise entreprise) {
-		entrepriseRepoistory.save(entreprise);
+		logger.info("START ajouterEntreprise ");
+
+		try {
+			logger.debug(entreprise.getId());
+
+			logger.trace("debut d'ajout de l'entreprise: " + entreprise.getName());
+			entrepriseRepoistory.save(entreprise);
+			logger.trace("fin ajout");
+
+			logger.debug("l'entreprise: " + entreprise.getName() + " de l'id: " + entreprise.getId()
+					+ " ajoutée avec succé");
+
+		} catch (Exception e) {
+			logger.error("Erreur" + e);
+		}
+		logger.info("END ajouterEntreprise ");
+
 		return entreprise.getId();
 	}
 
