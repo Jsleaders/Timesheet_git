@@ -8,4 +8,3 @@ COPY ./script.sh /
 COPY ./src/main/resources/application.properties /
 RUN chmod +x /script.sh
 RUN chmod 777 /application.properties
-ENTRYPOINT ["/bin/bash", "/script.sh"]
