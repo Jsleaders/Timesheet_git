@@ -1,3 +1,2 @@
 # Timesheet_git
-ffgggghhh
-yhhyh
+Continous Integration and delivery for a spring boot application
